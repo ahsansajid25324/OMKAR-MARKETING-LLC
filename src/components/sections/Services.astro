@@ -5,34 +5,34 @@ import Paragraph from "../shared/Paragraph.astro";
 import Title from "../shared/Title.astro";
 import { services } from "../../utils/data.ts";
 
-
 type ServicesProps = {
     title: string;
     description: string;
     icon: string
 };
-
-
 ---
 
 <section id="services">
-    <Container className="space-y-10 md:sapce-y-12">
+    <Container className="space-y-10 md:space-y-12">
         <div class="text-center max-w-3xl mx-auto space-y-4">
             <Title>
-                What we offer
+                Services Engineered for Velocity
             </Title>
             <Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                We build high-impact customer acquisition systems designed to turn digital touchpoints into predictable growth engines.
             </Paragraph>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {
-                    services.map((service: ServicesProps) => {
+                services.map((service: ServicesProps) => {
                     return (
-                            <Service title={service.title} description={service.description} icon={service.icon}>
-                            </Service>
-                            );
-                    })
+                        <Service 
+                            title={service.title} 
+                            description={service.description} 
+                            icon={service.icon}
+                        />
+                    );
+                })
             }
         </div>
     </Container>

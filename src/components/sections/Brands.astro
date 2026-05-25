@@ -2,52 +2,36 @@
 import Container from "../shared/Container.astro";
 import Title from "../shared/Title.astro";
 
+const brands = [
+    { name: "METRICS_PRO", src: "/logos/spotify.png", alt: "Metrics Pro analytics platform" },
+    { name: "B2B_SCALE", src: "/logos/slack.png", alt: "B2B Scale marketing framework" },
+    { name: "FLOW_DIGITAL", src: "/logos/paypallogo.png", alt: "Flow Digital systems" },
+    { name: "SEARCH_CORE", src: "/logos/spotify.png", alt: "Search Core infrastructure" },
+    { name: "ALPHA_SEO", src: "/logos/slack.png", alt: "Alpha SEO network" },
+    { name: "PERFORMANCE_LAB", src: "/logos/paypallogo.png", alt: "Performance Lab systems" },
+];
 ---
 
-<section>
+<section class="py-12 bg-body border-y border-box-border/40">
     <Container className="space-y-8">
         <div class="text-center max-w-3xl mx-auto">
             <Title>
-                Trusted by companies like
+                Trusted by Fast-Growing Enterprises & Digital Platforms
             </Title>
         </div>
         <div class="flex justify-center flex-wrap gap-4">
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/spotify.png" width="100" height="60" alt="spotify" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/slack.png" width="100" height="60" alt="slack" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/paypallogo.png" width="100" height="60" alt="paypal" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/spotify.png" width="100" height="60" alt="spotify" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/slack.png" width="100" height="60" alt="slack" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/paypallogo.png" width="100" height="60" alt="paypal" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/spotify.png" width="100" height="60" alt="spotify" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/slack.png" width="100" height="60" alt="slack" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/paypallogo.png" width="100" height="60" alt="paypal" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/spotify.png" width="100" height="60" alt="spotify" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/slack.png" width="100" height="60" alt="slack" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
-            <div class="p-4 sm:p-5 rounded-xl bg-body border border-box-border group">
-                <img src="/logos/paypallogo.png" width="100" height="60" alt="paypal" class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105">
-            </div>
+            {brands.map((brand) => (
+                <div class="p-4 sm:p-5 rounded-xl bg-box-bg border border-box-border group flex items-center justify-center min-w-[140px]">
+                    {/* Note: You can replace the placeholder text with your actual asset paths once ready */}
+                    <img 
+                        src={brand.src} 
+                        width="100" 
+                        height="60" 
+                        alt={brand.alt} 
+                        class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105"
+                    />
+                </div>
+            ))}
         </div>
     </Container>
 </section>
