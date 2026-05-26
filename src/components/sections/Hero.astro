@@ -30,14 +30,17 @@ import ByNumber from "./ByNumber.astro";
             
             <div class="mt-10 w-full flex max-w-md mx-auto lg:mx-0">
                 <div class="flex sm:flex-row flex-col gap-5 w-full">
-                    <form action="#" class="py-1 pl-6 w-full pr-1 flex gap-3 items-center text-heading-3 shadow-lg shadow-box-shadow border border-box-border bg-box-bg rounded-full ease-linear focus-within:bg-body focus-within:border-primary">
+                    <!-- Added id="audit-form" to hook into JavaScript -->
+                    <form id="audit-form" class="py-1 pl-6 w-full pr-1 flex gap-3 items-center text-heading-3 shadow-lg shadow-box-shadow border border-box-border bg-box-bg rounded-full ease-linear focus-within:bg-body focus-within:border-primary">
                         <span class="min-w-max pr-2 border-r border-box-border">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
                             </svg>                                                                        
                         </span>
-                        <input type="email" name="email" id="email" placeholder="Enter your business email" class="w-full py-3 outline-none bg-transparent">
-                        <Button variant={"primary"} className={"min-w-max text-white"}>
+                        <!-- Added required validation attribute -->
+                        <input type="email" name="email" id="email" required placeholder="Enter your business email" class="w-full py-3 outline-none bg-transparent">
+                        <!-- Changed Button to a semantic submit type -->
+                        <Button type="submit" variant={"primary"} className={"min-w-max text-white"}>
                             <span class="hidden sm:flex relative z-[5]">
                                 Get Your Free Audit
                             </span>
@@ -58,4 +61,40 @@ import ByNumber from "./ByNumber.astro";
     </Container>
 
     <ByNumber/>
+
+    <!-- Toast Markup -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 flex items-center gap-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-white border border-green-500 rounded-xl px-5 py-4 shadow-xl translate-y-20 opacity-0 pointer-events-none transition-all duration-300 ease-out">
+        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white font-bold text-xs">✓</span>
+        <p class="text-sm font-medium">Email has been sent successfully!</p>
+    </div>
 </section>
+
+<!-- Client-side Script Injection -->
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("audit-form");
+        const toast = document.getElementById("toast");
+
+        if (form && toast) {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault(); // Stop standard page refreshing behavior
+
+                // Optional: Gather email value if sending to an API backend later
+                // const emailValue = document.getElementById("email").value;
+
+                // Animate Toast Entry
+                toast.classList.remove("translate-y-20", "opacity-0", "pointer-events-none");
+                toast.classList.add("translate-y-0", "opacity-100");
+
+                // Clear out form inputs
+                form.reset();
+
+                // Animate Toast Exit automatically after 4 seconds
+                setTimeout(() => {
+                    toast.classList.remove("translate-y-0", "opacity-100");
+                    toast.classList.add("translate-y-20", "opacity-0", "pointer-events-none");
+                }, 4000);
+            });
+        }
+    });
+</script>

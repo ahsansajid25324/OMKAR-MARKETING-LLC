@@ -11,47 +11,139 @@ import Paragraph from "../shared/Paragraph.astro";
     >
       <div class="absolute right-0 top-0 h-full w-full flex justify-end">
         <div class="w-28 h-28 overflow-auto flex rounded-xl relative blur-2xl">
-            <span
-              class="absolute w-16 h-16 -top-1 -right-1 bg-green-500 rounded-md rotate-45"
-            ></span>
-            <span
-              class="absolute w-16 h-16 -bottom-1 -right-1 bg-[#FCDC58] rounded-md rotate-45"
-            ></span>
-            <span
-              class="absolute w-16 h-16 -bottom-1 -left-1 bg-primary rounded-md rotate-45"
-            ></span>
+            <span class="absolute w-16 h-16 -top-1 -right-1 bg-green-500 rounded-md rotate-45"></span>
+            <span class="absolute w-16 h-16 -bottom-1 -right-1 bg-[#FCDC58] rounded-md rotate-45"></span>
+            <span class="absolute w-16 h-16 -bottom-1 -left-1 bg-primary rounded-md rotate-45"></span>
           </div>
       </div>
 
       <div class="absolute left-0 bottom-0 h-full w-full flex items-end">
         <div class="w-28 h-28 overflow-auto flex rounded-xl relative blur-2xl">
-            <span
-              class="absolute w-16 h-16 -top-1 -right-1 bg-green-500 rounded-md rotate-45"
-            ></span>
-            <span
-              class="absolute w-16 h-16 -bottom-1 -right-1 bg-[#FCDC58] rounded-md rotate-45"
-            ></span>
-            <span
-              class="absolute w-16 h-16 -bottom-1 -left-1 bg-primary rounded-md rotate-45"
-            ></span>
+            <span class="absolute w-16 h-16 -top-1 -right-1 bg-green-500 rounded-md rotate-45"></span>
+            <span class="absolute w-16 h-16 -bottom-1 -right-1 bg-[#FCDC58] rounded-md rotate-45"></span>
+            <span class="absolute w-16 h-16 -bottom-1 -left-1 bg-primary rounded-md rotate-45"></span>
           </div>
       </div>
       <div class="mx-auto text-center max-w-xl md:max-w-2xl relative">
-        <h1
-          class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight
-          font-bold text-heading-1"
-        >
+        <h1 class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight font-bold text-heading-1">
           Claim Your Free <span class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600">Growth & Velocity</span> Strategy Audit
         </h1>
         <Paragraph className={"pt-6"}>
           Let our team analyze your current keyword footprint, identify competitor traffic leaks, and map out a concrete blueprint to increase your inbound conversion pipelines. No obligation, just direct data.
         </Paragraph>
         <div class="mx-auto max-w-md sm:max-w-xl pt-10">
-          <Button variant={"primary"}>
-            <span class="text-white relative z-[5] font-semibold">Request Free Audit</span>
-          </Button>
+          <!-- FIXED: Moved the ID to this wrapper div to guarantee Javascript catches the click -->
+          <div id="open-modal-btn" class="inline-block cursor-pointer">
+            <Button variant={"primary"}>
+              <span class="text-white relative z-[5] font-semibold">Request Free Audit</span>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
   </Container>
+
+  <!-- Modal Popup Overlay -->
+  <div id="audit-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+    
+    <!-- Modal Content Card -->
+    <div class="relative w-full max-w-md bg-white dark:bg-gray-900 border border-box-border rounded-2xl p-6 md:p-8 shadow-2xl scale-95 transition-transform duration-300" id="modal-card">
+      
+      <!-- Close Button -->
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-heading-1 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Initial Form State Wrapper -->
+      <div id="modal-form-state">
+        <h3 class="text-2xl font-bold text-heading-1 mb-2">Get Your Free Audit</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6"> Enter your business email below and our infrastructure team will assemble your growth report. </p>
+        
+        <form id="popup-audit-form" class="flex flex-col gap-4">
+          <div class="relative flex items-center border border-box-border bg-box-bg rounded-xl px-4 focus-within:border-primary transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 mr-3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
+            </svg>
+            <input type="email" id="popup-email" required placeholder="name@company.com" class="w-full py-3.5 outline-none bg-transparent text-heading-2 text-sm" />
+          </div>
+
+          <Button type="submit" variant={"primary"} className={"w-full justify-center text-white"}>
+            <span class="relative z-[5]">Submit</span>
+          </Button>
+        </form>
+      </div>
+
+      <!-- Success Messaging State -->
+      <div id="modal-success-state" class="hidden flex flex-col items-center text-center py-4">
+        <div class="w-12 h-12 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-heading-1 mb-2">Mail sent successfully!</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 max-w-xs mb-6"> We have received your request. Check your inbox shortly for your strategy blueprint. </p>
+        <button id="success-close-btn" class="text-sm font-semibold text-primary hover:underline"> Dismiss </button>
+      </div>
+
+    </div>
+  </div>
 </section>
+
+<script is:inline>
+  // Runs immediately inside the browser environment
+  const setupModal = () => {
+    const openBtn = document.getElementById("open-modal-btn");
+    const closeBtn = document.getElementById("close-modal-btn");
+    const successCloseBtn = document.getElementById("success-close-btn");
+    const modal = document.getElementById("audit-modal");
+    const card = document.getElementById("modal-card");
+    
+    const form = document.getElementById("popup-audit-form");
+    const formState = document.getElementById("modal-form-state");
+    const successState = document.getElementById("modal-success-state");
+
+    if (!openBtn || !modal || !card) return;
+
+    const openModal = () => {
+      modal.classList.remove("opacity-0", "pointer-events-none");
+      card.classList.remove("scale-95");
+      card.classList.add("scale-100");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      modal.classList.add("opacity-0", "pointer-events-none");
+      card.classList.remove("scale-100");
+      card.classList.add("scale-95");
+      document.body.style.overflow = "";
+      
+      setTimeout(() => {
+        if (form) form.reset();
+        if (formState) formState.classList.remove("hidden");
+        if (successState) successState.classList.add("hidden");
+      }, 300);
+    };
+
+    openBtn.addEventListener("click", openModal);
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    if (successCloseBtn) successCloseBtn.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); 
+        formState.classList.add("hidden");
+        successState.classList.remove("hidden");
+      });
+    }
+  };
+
+  // Handles normal loading conditions alongside Astro View Transitions if enabled
+  document.addEventListener("DOMContentLoaded", setupModal);
+  document.addEventListener("astro:page-load", setupModal);
+</script>
